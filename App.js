@@ -1,40 +1,52 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// const heading = React.createElement(
-//   "h1",
-//   { id: "heading", xyz: "abc" },
-//   "Hello world from react"
+
+// react element is an object
+// React.createElement  => react element => JS Object => when we render to DOM => becomes html element HTMLElement(render)
+const heading = React.createElement("h1", { id: "heading" }, "Namaste React!");
+console.log(heading);
+//jsx -HTML-like or XML-Like Syntax
+// jsx->babel transpiles to react element => react.createlement => JS object => htmlement
+// transpiled before it reaches the js engine in the browser - parcel - babel pkg
+//babel converts jsx to react code which browser can understand
+const jsxheading = (
+  <h1 id="heading" className="head" tabIndex="1">
+    Hello from jsx 🚀
+  </h1>
+);
+console.log(jsxheading);
+
+//React Component
+// Class Component - Old
+// Functional Component - New
+
+const HeadingComponent = () => {
+  return (
+    <div>
+      <h1 id="heading">Namaste react functional component!!</h1>
+      <Title />
+    </div>
+  );
+};
+
+const Title = () => (
+  <div>
+    <h1>Namaste react from title</h1>
+  </div>
+);
+
+// other syntax
+// const HeadingComponent2 = () => (
+//   <div id="container">
+//     <h1 id="heading">Namaste react functional component!!</h1>
+//   </div>
 // );
 
-// console.log(heading); // gives object
-
-/*
- *
- *<div id="parent">
- *<div id="child1">
- *   <h1></h1>
- *   <h1></h1>
- *</div>
- *<div id="child2">
- *   <h1></h1>
- *   <h1></h1>
- *</div>
- *</div>
- */
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child1" }, [
-    React.createElement("h1", { id: "heading1" }, "This is namaste react 🚀 "),
-    React.createElement("h2", { id: "heading2" }, "hellow "), // if want to give child elements at same level then
-    //give like an array of children
-  ]),
-  React.createElement("div", { id: "child2" }, [
-    React.createElement("h1", { id: "heading1" }, "hellow1 "),
-    React.createElement("h2", { id: "heading2" }, "hellow 2"), // if want to give child elements at same level then
-    //give like an array of children
-  ]),
-]);
+//if single return then we can write it in single line
+// const fn = () => true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
 
-console.log(parent); // parent is an object which is the react element
+//render functional component
+root.render(<HeadingComponent />);
+// root.render(heading); render reactelement
